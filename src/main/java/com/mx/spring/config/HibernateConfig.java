@@ -4,7 +4,7 @@ package com.mx.spring.config;
 import java.util.Properties;
 import javax.sql.DataSource;
 
-import org.eclipse.persistence.sessions.factories.SessionFactory;
+import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.context.annotation.Bean;
@@ -22,11 +22,11 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 public class HibernateConfig {
     @Bean
     @Autowired
-    public HibernateTransactionManager transictionManager(SessionFactory s){
+    public HibernateTransactionManager transactionManager(SessionFactory s){
         
         HibernateTransactionManager txManager = new HibernateTransactionManager();
         
-        txManager.setSessionFactory((org.hibernate.SessionFactory) s);
+        txManager.setSessionFactory(s);
         
         return txManager;
     }
